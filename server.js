@@ -3,6 +3,7 @@ require('dotenv').config()
 
 const express = require('express')
 const app = express()
+
 const expressLayouts = require('express-ejs-layouts')
 
 const indexRouter = require('./routes/index')
@@ -15,11 +16,17 @@ app.use(express.static('public'))
 
 const mongoose = require('mongoose')
 mongoose.connect(process.env.DATABASE_URL, {
-    useNewUrlParser: true})
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    })
 const db = mongoose.connection
-db.on('error', error => console.error(error))
-db.once('open', () => console.log('Connected to Mongoose'))
+db.on('error', (error) => console.error(error))
+db.once('open', () => console.log('Connected to Database'))
 
-app.use('/', indexRouter)
+app.use(express.json())
 
-app.listen(process.env.PORT || 3000)
+const indexRouters = require('./routes/index')
+app.use('/index', indexRouters)
+
+// app.listen(process.env.PORT || 3000)
+app.listen(3000, () => console.log('Server Started'))
