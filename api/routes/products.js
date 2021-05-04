@@ -3,8 +3,10 @@ const router = express.Router()
 const Product = require('../models/product')
 
 //Render
-router.get('/', (req, res)=>{
-    res.render('product')
+router.get('/', (req, res, next)=>{
+    res.status(200).json({
+        message:'GET requests' 
+    })    
 })
 
 //Getting all
@@ -15,6 +17,7 @@ router.get('/', async(req, res)=>{
     } catch (error) {
         res.status(500).json({ message: error.message})
     }
+    
 })
 
 //Getting one
