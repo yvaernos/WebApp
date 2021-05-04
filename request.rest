@@ -1,0 +1,34 @@
+GET http://localhost:3000/products
+
+###
+
+POST  http://localhost:3000/products
+Content-Type: application/json
+
+{
+    "sku": "002",
+    "productName": "Ice Umbrella",
+    "modelNumber": "223",
+    "price": "2",
+    "description": "its a ice umbrella",
+    "category": "umbrella",
+    "inventoryCount": "3",
+    "dimensions": "5x60x5",
+    "weight": "1"
+}
+
+###
+
+DELETE http://localhost:3000/products/60905ccf9051583d98e83b52
+
+###
+
+PATCH http://localhost:3000/products/60905c3c5266f01564d9aded
+Content-Type: application/json
+
+{
+    
+    "description": "It's a very nice umbrella",
+    "weight": 2
+}
+
